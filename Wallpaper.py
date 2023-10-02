@@ -3,14 +3,14 @@ import ctypes
 import time
 import random
 from threading import *
-# import sys
+import sys
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
 import tkinter.font as font
 
 
-# sys.setrecursionlimit(1000)
+sys.setrecursionlimit(1000)
 mainDizin=""
 
 class iplik:
@@ -23,15 +23,11 @@ class iplik:
         thread.start()                               # için thread işlemini kullanıyorum
         
 
-
-
 def main(dizin,adet,saniye):
     for i in range(adet):
         dosyaBul(dizin,dizin)
         time.sleep(saniye)
     
-    
-
 def dosyaBul(dizin,mainDizin):
     try:
         dosya=dosyaSec(dizin)
@@ -64,7 +60,7 @@ def dosyaSec(dizin):
     os.chdir(bul)
     mainFolder=os.listdir()
     if mainFolder==[]:
-        print("boşşşşşşşşşş")
+        print("Empty")
         return dosyaSec(ustDizin())
             
         
@@ -73,7 +69,6 @@ def dosyaSec(dizin):
         subFolder=mainFolder[rnd] 
         return subFolder
     
-
 def dosyaTuru(dosya):
     try:
         kontrol=dosya.split(".")
@@ -83,7 +78,7 @@ def dosyaTuru(dosya):
         if len(kontrol)==1:
             return 3
         else:
-            if kontrol[-1]=="jpg" or "gif" or "png": #DEŞĞİTİRİLECEK
+            if kontrol[-1]=="jpg" or "gif" or "png": 
                 return 1
             else:
                 return 2
@@ -100,8 +95,6 @@ def ustDizin():
             break
     return os.getcwd()
 
-
-    
 def tkPencere(mainDizin):
     pencere = tk.Tk() # pointing root to Tk() to use it as Tk() in program.
     # pencere.attributes('-topmost', True) # Opened windows will be active. above all windows despite of selection.
@@ -111,8 +104,8 @@ def tkPencere(mainDizin):
     
     myFont = font.Font(size=40)
     
-    tk.Label(text="Adet: ",font=myFont).grid(column=1,row=1)
-    tk.Label(text="Saniye: ",font=myFont).grid(column=1,row=2)
+    tk.Label(text="Repeat: ",font=myFont).grid(column=1,row=1)
+    tk.Label(text="Second: ",font=myFont).grid(column=1,row=2)
     adet=tk.Entry(pencere,font=myFont,width=5)
     saniye=tk.Entry(pencere,font=myFont,width=5)
     adet.insert(index=10,string='10')
@@ -130,12 +123,12 @@ def tkPencere(mainDizin):
                 ic_iplik.run()        
                 
             else:
-                tk.messagebox.showerror("Hata","Dosya Seçilmedi")
+                tk.messagebox.showerror("Error","Not select directory")
     a=program()
         
-    button=tk.Button(pencere,text="Dosya Seç",command=a.yol,font=myFont,fg="Red")
+    button=tk.Button(pencere,text="Select directory",command=a.yol,font=myFont,fg="Red")
     button.grid(column=1,row=3)    
-    button2=tk.Button(pencere,text="Başat",command=a.calistir,font=myFont,fg="Red")
+    button2=tk.Button(pencere,text="Start",command=a.calistir,font=myFont,fg="Red")
     button2.grid(column=2,row=3)
     
     pencere.mainloop()
